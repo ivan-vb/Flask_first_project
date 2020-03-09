@@ -14,6 +14,10 @@ class Post(db.Model):
     slug = db.Column(db.String(140), unique=True)
     body = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.now())
+    url_image = db.Column(db.String)
+    categories = db.Column(db.String(30))
+    description = db.Column(db.String(140))
+    comments = db.Column(db.Integer)
 
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)

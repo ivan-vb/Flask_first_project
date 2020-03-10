@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{ the_title }}</title>
+    <title>
+    {% block title %}
+
+    {% endblock %} | Flask app
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,7 +31,8 @@
     <link rel="stylesheet" href="../static/css/flaticon.css">
     <link rel="stylesheet" href="../static/css/icomoon.css">
     <link rel="stylesheet" href="../static/css/style.css">
-  </head>
+
+   </head>
   <body>
 
 	<div id="colorlib-page">
@@ -62,7 +67,7 @@
 
         {% block body %}
 
-        {% endblock %}'
+        {% endblock %}
 
     </div><!-- END COLORLIB-PAGE -->
 
@@ -85,6 +90,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="../static/js/google-map.js"></script>
   <script src="../static/js/main.js"></script>
-    
+
   </body>
 </html>

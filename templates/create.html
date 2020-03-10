@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blog
+{% endblock %}
+
+
+{% block body %}
+
+
+{{ ckeditor.load() }}
+
+		<div id="colorlib-main">
+			<section class="ftco-section">
+				<div class="container">
+                    <form method="post">
+
+                            {{ form.title() }}
+                            {{ form.body() }}
+                            {{ form.submit() }}
+                    </form>
+                </div>
+			</section>
+		</div><!-- END COLORLIB-MAIN -->
+
+
+{% endblock %}

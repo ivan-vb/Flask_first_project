@@ -7,18 +7,45 @@
 
 {% block body %}
 
-{{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+
 
 
 		<div id="colorlib-main">
 			<section class="ftco-section">
 				<div class="container">
-                    <form method="post">
 
-                            {{ form.title() }}
-                            {{ form.body() }}
-                            {{ form.submit() }}
+                        <form method="post">
+
+<div class="form-group" >
+    <label for="exampleInputPassword1">Password</label>
+                        <div class="input-group input-group-lg">
+
+                                <input id="title" class="form-control" name="title" type="text" value="">
+                        </div>
+                        </div>
+                            <div class="form-group" >
+                            {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+                            <textarea class="ckeditor " id="body" name="body"></textarea>
+                            </div>
+                            <div class="sidebar-box ftco-animate">
+                          <h3 class="sidebar-heading">Tag Cloud</h3>
+                          <ul class="tagcloud">
+                            <a href="#" class="tag-cloud-link">animals</a>
+                            <a href="#" class="tag-cloud-link">human</a>
+                            <a href="#" class="tag-cloud-link">people</a>
+                            <a href="#" class="tag-cloud-link">cat</a>
+                            <a href="#" class="tag-cloud-link">dog</a>
+                            <a href="#" class="tag-cloud-link">nature</a>
+                            <a href="#" class="tag-cloud-link">leaves</a>
+                            <a href="#" class="tag-cloud-link">food</a>
+                          </ul>
+                        </div>
+
+                            <input id="submit" class="btn btn-primary btn-lg" name="submit" type="submit" value="Submit">
+
+
                     </form>
+
                 </div>
 			</section>
 		</div><!-- END COLORLIB-MAIN -->

@@ -7,8 +7,8 @@
 
 {% block body %}
 
+{{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
 
-{{ ckeditor.load() }}
 
 		<div id="colorlib-main">
 			<section class="ftco-section">

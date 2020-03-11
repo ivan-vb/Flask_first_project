@@ -1,7 +1,9 @@
 from app import app
-from flask import render_template
+from flask import render_template, request, send_from_directory, url_for
 from models import Post
 from forms import PostForm
+from flask_ckeditor import upload_success, upload_fail
+import os
 
 
 @app.route('/create')
@@ -14,3 +16,19 @@ def create_post():
 def index():
     the_post = Post.query.all()
     return render_template('index.html', the_post=the_post)
+
+"""@app.route('/files/<path:filename>')
+def uploaded_files(filename):
+    path = '../static/images'
+    return send_from_directory(path, filename)
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    f = request.files.get('upload')
+    # Add more validations here
+    extension = f.filename.split('.')[1].lower()
+    if extension not in ['jpg', 'gif', 'png', 'jpeg']:
+        return upload_fail(message='Image only!')
+    f.save(os.path.join('../static/images', f.filename))
+    url = url_for('uploaded_files', filename=f.filename)
+    return upload_success(url=url)"""

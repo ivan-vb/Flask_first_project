@@ -2,6 +2,7 @@ from app import db
 from models import Post, Tag
 from datetime import date
 
+author = db.Column(db.String(80))
 
 """contents = ['1="animals"', '2="human"', '3="people"', '4="cat"', '5="dog"', '6="nature"', '7="leave"', '8="food"' ]
 

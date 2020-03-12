@@ -1,13 +1,25 @@
-from app import app
-from flask import render_template, request, send_from_directory, url_for
+from app import app, db
+from flask import render_template, request, send_from_directory, url_for, redirect
 from models import Post
 from forms import PostForm
 from flask_ckeditor import upload_success, upload_fail
 import os
 
 
-@app.route('/create')
+@app.route('/create', methods=['POST', 'GET'])
 def create_post():
+    if request.method == 'POST':
+        title = request.form('title')
+        body = request.form('body')
+
+        try:
+            post = Post(title=title, body=body)
+            db.session.add(post)
+            db.session.commit()
+        except:
+            print('Error commit db')
+        return redirect(url_for('index'))
+
     form = PostForm()
     return render_template('create.html', form=form)
 

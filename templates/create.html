@@ -14,10 +14,10 @@
 			<section class="ftco-section">
 				<div class="container">
 
-                        <form method="post">
+                        <form action="{{ url_for('create_post') }}" method="POST" role="form">
 
-<div class="form-group" >
-    <label for="exampleInputPassword1">Password</label>
+                        <div class="form-group" >
+                        <label for="exampleInputPassword1">Password</label>
                         <div class="input-group input-group-lg">
 
                                 <input id="title" class="form-control" name="title" type="text" value="">

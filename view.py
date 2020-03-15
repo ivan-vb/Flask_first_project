@@ -1,16 +1,23 @@
 from app import app, db
 from flask import render_template, request, send_from_directory, url_for, redirect
-from models import Post
+from models import Post, Tag
 from forms import PostForm
 from flask_ckeditor import upload_success, upload_fail
 import os
+""" if len(tags) > 0:
+                for t in tags.split():
+                    tag = Tag(tags=t)
+                    db.session.add(tag)
+                    db.session.commit()
 
+                    db.session.commit()"""
 
 @app.route('/create', methods=['POST', 'GET'])
 def create_post():
     if request.method == 'POST':
-        title = request.form('title')
-        body = request.form('body')
+        title = request.form['title']
+        body = request.form['body']
+        tags = request.form['tags']
 
         try:
             post = Post(title=title, body=body)

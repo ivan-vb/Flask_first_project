@@ -15,9 +15,9 @@
 				<div class="container">
 
                         <form action="{{ url_for('create_post') }}" method="POST" role="form">
-
+                        {{ form.hidden_tag() }}
                         <div class="form-group" >
-                        <label for="exampleInputPassword1">Password</label>
+                        <label for="title">Title</label>
                         <div class="input-group input-group-lg">
 
                                 <input id="title" class="form-control" name="title" type="text" value="">

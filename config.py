@@ -7,3 +7,4 @@ class Configuration(object):
     CKEDITOR_FILE_UPLOADER = 'upload'
     SECRET_KEY = 'dev key'
     CKEDITOR_ENABLE_CSRF = True
+    #POOL_PRE_PING = True

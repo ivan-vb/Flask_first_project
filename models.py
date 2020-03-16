@@ -25,6 +25,7 @@ class Post(db.Model):
     description = db.Column(db.String(140))
     num_comments = db.Column(db.Integer)
 
+
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)
         self.generate_slug()

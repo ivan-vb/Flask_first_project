@@ -3,6 +3,7 @@ from flask import render_template, request, send_from_directory, url_for, redire
 from models import Post, Tag
 from forms import PostForm
 from flask_sqlalchemy import BaseQuery
+import sqlalchemy
 
 from flask_ckeditor import upload_success, upload_fail
 import os

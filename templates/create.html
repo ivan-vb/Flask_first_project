@@ -13,49 +13,38 @@
 		<div id="colorlib-main">
 			<section class="ftco-section">
 				<div class="container">
-
                         <form action="{{ url_for('create_post') }}" method="POST" role="form">
-                        {{ form.hidden_tag() }}
+                        {{ form.csrf_token }}
                         <div class="form-group" >
                         <label for="title">Title</label>
                         <div class="input-group input-group-lg">
-
-                                <input id="title" class="form-control" name="title" type="text" value="">
+                            {{ form.title(id="title", class="form-control") }}
                         </div>
                         </div>
                         <div class="form-group" >
-                        {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
-                        <textarea class="ckeditor " id="body" name="body"></textarea>
+                            <label for="body"></label>
+                            <textarea class="ckeditor" id="body" name="body">{{ bb }}</textarea>
                         </div>
                         <div class="form-group" >
                         <label for="title">Tags</label>
                         <div class="input-group input-group-lg">
-                            {{ form.tags() }}
-                                <!--<input id="tags" class="form-control" name="tags" type="text" value="">-->
+                           {{ form.tags(id="tags", class="form-control") }}
                         </div>
                         </div>
-                            <div class="sidebar-box ftco-animate">
-                          <h3 class="sidebar-heading">Tag Cloud</h3>
-                          <ul class="tagcloud">
-                            <a href="#" class="tag-cloud-link">animals</a>
-                            <a href="#" class="tag-cloud-link">human</a>
-                            <a href="#" class="tag-cloud-link">people</a>
-                            <a href="#" class="tag-cloud-link">cat</a>
-                            <a href="#" class="tag-cloud-link">dog</a>
-                            <a href="#" class="tag-cloud-link">nature</a>
-                            <a href="#" class="tag-cloud-link">leaves</a>
-                            <a href="#" class="tag-cloud-link">food</a>
-                          </ul>
+                        <div class="form-group" >
+                        <div class="input-group input-group-lg">
+                            {{ form.categories(id="categories", class="form-control form-control-lg") }}
                         </div>
-
-                            <input id="submit" class="btn btn-primary btn-lg" name="submit" type="submit" value="Submit">
-
-
+                        </div>
+                        {{ form.submit(id="submit", class="btn btn-primary btn-lg", value="Submit") }}
                     </form>
-
                 </div>
 			</section>
 		</div><!-- END COLORLIB-MAIN -->
-
+    {{ ckeditor.load( ) }}
+    {{ ckeditor.config(name='body') }}
+<script type="text/javascript">
+    document.getElementById("tags").value = "{{ dd }}";
+</script>
 
 {% endblock %}

@@ -17,7 +17,6 @@ def create_post():
         tags = request.form['tags']
         categories = request.form['categories']
 
-
         try:
             str_body = str(body)
             if str_body.find('src=') is not -1:
@@ -50,7 +49,7 @@ def create_post():
 
     form = PostForm()
     bb = '<p>Foto2</p><p><img alt="" src="/files/0122266.jpg" style="height:1200px; width:1600px" /></p>'
-    dd = 'dog, cat'
+    dd = 'спорт, наука'
     return render_template('create.html', form=form, bb=bb, dd=dd)
 
 
@@ -58,6 +57,7 @@ def create_post():
 def index():
     the_post = Post.query.all()
     return render_template('index.html', the_post=the_post)
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['UPLOADED_PATH'] = os.path.join(basedir, 'uploads')

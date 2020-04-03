@@ -15,29 +15,38 @@
 				<div class="container">
                         <form action="{{ url_for('create_post') }}" method="POST" role="form">
                         {{ form.csrf_token }}
-                        <div class="form-group" >
-                        <label for="title">Title</label>
                         <div class="input-group input-group-lg">
+                             <div class="input-group-prepend">
+                                <label for="title" class="input-group-text" id="inputGroup-sizing-lg">Заголовок</label>
+                             </div>
                             {{ form.title(id="title", class="form-control") }}
                         </div>
-                        </div>
-                        <div class="form-group" >
+                        <div class="form-group">
                             <label for="body"></label>
                             <textarea class="ckeditor" id="body" name="body">{{ bb }}</textarea>
                         </div>
-                        <div class="form-group" >
-                        <label for="title">Tags</label>
-                        <div class="input-group input-group-lg">
-                           {{ form.tags(id="tags", class="form-control") }}
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <label for="tags" class="input-group-text" id="inputGroup-sizing-lg">Теги</label>
+                                </div>
+                                {{ form.tags(id="tags", class="form-control", maxlength="30") }}
+                            </div>
                         </div>
+                        <div class="alert alert-secondary" role="alert">
+                            Розділяйте теги комами <b>спорт, наука</b>
                         </div>
-                        <div class="form-group" >
-                        <div class="input-group input-group-lg">
-                            {{ form.categories(id="categories", class="form-control form-control-lg") }}
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <label for="categories" class="input-group-text" id="inputGroup-sizing-lg">Категорія</label>
+                                </div>
+                                {{ form.categories(id="categories", class="form-control form-control-lg") }}
+                            </div>
                         </div>
-                        </div>
-                        {{ form.submit(id="submit", class="btn btn-primary btn-lg", value="Submit") }}
+                        {{ form.submit(id="submit", class="btn btn-primary btn-lg", value="Опублікувати") }}
                     </form>
+
                 </div>
 			</section>
 		</div><!-- END COLORLIB-MAIN -->

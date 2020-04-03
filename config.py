@@ -8,4 +8,4 @@ class Configuration(object):
     CKEDITOR_ENABLE_CSRF = True
     CKEDITOR_LANGUAGE = 'uk'
     CKEDITOR_HEIGHT = '500'
-    #POOL_PRE_PING = True
+    POOL_PRE_PING = True

@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, SubmitField, BooleanField, SelectField
+from wtforms import Form, StringField, SubmitField, BooleanField, SelectField, FileField
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 
@@ -11,3 +11,4 @@ class PostForm(FlaskForm):
     tags = StringField('Tags')
     submit = SubmitField('Submit')
     categories = SelectField(label='Categories', choices=[(categories, categories) for categories in categories_name])
+    foto = FileField('Foto')

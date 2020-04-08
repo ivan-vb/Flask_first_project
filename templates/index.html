@@ -7,13 +7,17 @@
 
 {% block body %}
 
-		<div id="colorlib-main">
+    <style type="text/css">
+        .disabled {
+        }
+    </style>
+    <div id="colorlib-main">
 			<section class="ftco-section ftco-no-pt ftco-no-pb">
 	    	<div class="container">
 	    		<div class="row d-flex">
 	    			<div class="col-xl-8 py-5 px-md-5">
 	    				<div class="row pt-md-4">
-                        {% for post in the_post %}
+                        {% for post in pages.items %}
 
                             <div class="col-md-12">
                                 <div class="blog-entry ftco-animate d-md-flex">
@@ -38,14 +42,41 @@
 			    		<div class="row">
                           <div class="col">
                             <div class="block-27">
-                              <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
+                              <ul class="pagination">
+                                 {% if not pages.has_prev %}
+                                     <li class="disabled">
+                                         <a href="./?page=1">&lt;</a>
+                                     </li>
+                                 {% else %}
+                                     <li>
+                                         <a href="./?page={{ pages.prev_num }}">&lt;</a>
+                                     </li>
+                                 {% endif %}
+                                {% for page in pages.iter_pages() %}
+
+                                        {% if page == pages.page %}
+                                           <li class="active"><span>{{ page }}</span></li>
+                                        {% elif page == None %}
+                                            <li><a>...</a></li>
+                                        {% else %}
+                                            <li><a href="./?page={{ page }}">{{ page }}</a></li>
+                                        {% endif %}
+
+
+                                {% endfor %}
+                                  {% if not pages.has_next %}
+                                         <li class="disabled">
+                                             <a href="./?page=1">&gt;</a>
+                                         </li>
+                                     {% else %}
+                                         <li>
+                                             <a href="./?page={{ pages.next_num }}">&gt;</a>
+                                         </li>
+                                     {% endif %}
+
+
+
+
                               </ul>
                             </div>
                           </div>
@@ -61,13 +92,11 @@
                           </form>
                         </div>
 	                    <div class="sidebar-box ftco-animate">
-                              <h3 class="sidebar-heading">Categories</h3>
+                              <h3 class="sidebar-heading">Категорії</h3>
                               <ul class="categories">
-                                <li><a href="#">Fashion <span>(6)</span></a></li>
-                                <li><a href="#">Technology <span>(8)</span></a></li>
-                                <li><a href="#">Travel <span>(2)</span></a></li>
-                                <li><a href="#">Food <span>(2)</span></a></li>
-                                <li><a href="#">Photography <span>(7)</span></a></li>
+                                  {% for k, v in categories_quantity.items() %}
+                                      <li><a href="#">{{ k }} <span>({{ v }})</span></a></li>
+                                  {% endfor %}
                               </ul>
 	                    </div>
                         <div class="sidebar-box ftco-animate">
@@ -107,16 +136,11 @@
                           </div>
                         </div>
                         <div class="sidebar-box ftco-animate">
-                          <h3 class="sidebar-heading">Tag Cloud</h3>
+                          <h3 class="sidebar-heading">Теги</h3>
                           <ul class="tagcloud">
-                            <a href="#" class="tag-cloud-link">animals</a>
-                            <a href="#" class="tag-cloud-link">human</a>
-                            <a href="#" class="tag-cloud-link">people</a>
-                            <a href="#" class="tag-cloud-link">cat</a>
-                            <a href="#" class="tag-cloud-link">dog</a>
-                            <a href="#" class="tag-cloud-link">nature</a>
-                            <a href="#" class="tag-cloud-link">leaves</a>
-                            <a href="#" class="tag-cloud-link">food</a>
+                              {% for tag in tags %}
+                            <a href="#" class="tag-cloud-link">{{ tag.name }}</a>
+                              {% endfor %}
                           </ul>
                         </div>
                         <div class="sidebar-box subs-wrap img py-4" style="background-image: url(../static/images/bg_1.jpg);">
@@ -131,14 +155,11 @@
 	                        </form>
 	                    </div>
                         <div class="sidebar-box ftco-animate">
-                          <h3 class="sidebar-heading">Archives</h3>
+                          <h3 class="sidebar-heading">Архів</h3>
                           <ul class="categories">
-                            <li><a href="#">Decob14 2018 <span>(10)</span></a></li>
-                            <li><a href="#">September 2018 <span>(6)</span></a></li>
-                            <li><a href="#">August 2018 <span>(8)</span></a></li>
-                            <li><a href="#">July 2018 <span>(2)</span></a></li>
-                            <li><a href="#">June 2018 <span>(7)</span></a></li>
-                            <li><a href="#">May 2018 <span>(5)</span></a></li>
+                             {% for k, v in created_dist.items() %}
+                                      <li><a href="#">{{ k }} <span>({{ v }})</span></a></li>
+                             {% endfor %}
                           </ul>
                         </div>
                         <div class="sidebar-box ftco-animate">

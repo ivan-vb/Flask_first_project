@@ -11,4 +11,5 @@ class PostForm(FlaskForm):
     tags = StringField('Tags')
     submit = SubmitField('Submit')
     categories = SelectField(label='Categories', choices=[(categories, categories) for categories in categories_name])
+    description = StringField('Description')
     foto = FileField('Foto')

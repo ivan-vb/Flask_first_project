@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, request, send_from_directory, url_for, redirect
 from models import Post, Tag
-from forms import PostForm
+from forms import PostForm, categories_name
 from flask_sqlalchemy import BaseQuery
 import sqlalchemy
 
@@ -15,8 +15,9 @@ def create_post():
         title = request.form['title']
         body = request.form['body']
         tags = request.form['tags']
+        description = request.form['description']
         categories = request.form['categories']
-
+        num_comments = 0
         try:
             str_body = str(body)
             if str_body.find('src=') is not -1:
@@ -26,7 +27,7 @@ def create_post():
             else:
                 url_image = '../static/images/image_1.jpg'
 
-            post = Post(title=title, body=body, url_image=url_image)
+            post = Post(title=title, body=body, url_image=url_image, description=description, categories=categories, num_comments=num_comments)
             db.session.add(post)
             db.session.commit()
             if len(tags) > 0:
@@ -56,7 +57,26 @@ def create_post():
 @app.route('/')
 def index():
     the_post = Post.query.all()
-    return render_template('index.html', the_post=the_post)
+    posts = Post.query
+    page = request.args.get('page')
+    if page and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
+    pages = posts.paginate(page=page, per_page=10)
+    categories_quantity = {}
+    created_dist = {}
+    for c in categories_name:
+        categories = db.session.query(Post).filter(Post.categories == c).all()
+        q = len(categories)
+        categories_quantity[c] = q
+    for create in the_post:
+        if created_dist.get(create.created.strftime("%B %Y")) == None:
+            created_dist[create.created.strftime("%B %Y")] = 0
+        else:
+            created_dist[create.created.strftime("%B %Y")] += 1
+    tags = Tag.query.all()
+    return render_template('index.html', the_post=the_post, categories_quantity=categories_quantity, tags=tags, created_dist=created_dist, pages=pages)
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
